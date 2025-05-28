@@ -1,3 +1,7 @@
+First install Sitecore CLI in globally
+  -> npm install -g @sitecore-jss/sitecore-jss-cli
+
+
 Run below command
 	-> jss setup
 
