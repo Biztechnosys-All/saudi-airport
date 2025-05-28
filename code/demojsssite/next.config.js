@@ -55,7 +55,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'jssdemositesc.dev.local',
+        hostname: 'saudiairportdemosc.dev.local',
         port: '',
       },
     ]
