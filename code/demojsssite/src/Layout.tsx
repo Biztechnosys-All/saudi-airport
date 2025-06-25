@@ -9,7 +9,7 @@ import Scripts from 'src/Scripts';
 
 // Prefix public assets with a public URL to enable compatibility with Sitecore Experience Editor.
 // If you're not supporting the Experience Editor, you can remove this.
-const publicUrl = config.publicUrl;
+const publicUrl = config.favico;
 
 interface LayoutProps {
   layoutData: LayoutServiceData;
@@ -44,7 +44,7 @@ const Layout = ({ layoutData, headLinks }: LayoutProps): JSX.Element => {
       </Head>
 
       {/* root placeholder for the app, which we add components to using route data */}
-      <div className={mainClassPageEditing}>
+      <div className={mainClassPageEditing} style={{overflowX: "hidden"}}>
         <header>
           <div id="header">{route && <Placeholder name="headless-header" rendering={route} />}</div>
         </header>

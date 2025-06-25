@@ -1,0 +1,141 @@
+@font-face {
+  font-family: "Loew-Next-Arabic-thin";
+  src: url("../fonts/Loew-Next-Arabic-Thin.eot");
+  src: url("../fonts/Loew-Next-Arabic-Thin.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/Loew-Next-Arabic-Thin.woff2") format("woff2"),
+    url("../fonts/Loew-Next-Arabic-Thin.woff") format("woff"),
+    url("../fonts/Loew-Next-Arabic-Thin.ttf") format("truetype"),
+    /* url("../fonts/Loew-Next-Arabic-Thin.svg#Loew Next Arabic") format("svg"); */
+}
+@font-face {
+  font-family: "Loew-Next-Arabic-medium";
+  src: url("../fonts/Loew-Next-Arabic-Medium.eot");
+  src: url("../fonts/Loew-Next-Arabic-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/Loew-Next-Arabic-Medium.woff2") format("woff2"),
+    url("../fonts/Loew-Next-Arabic-Medium.woff") format("woff"),
+    url("../fonts/Loew-Next-Arabic-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Loew-Next-Arabic-ExtraBold";
+  src: url("../fonts/Loew-Next-Arabic-ExtraBold.eot");
+  src: url("../fonts/Loew-Next-Arabic-ExtraBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/Loew-Next-Arabic-ExtraBold.woff2") format("woff2"),
+    url("../fonts/Loew-Next-Arabic-ExtraBold.woff") format("woff"),
+    url("../fonts/Loew-Next-Arabic-ExtraBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Loew-Next-Arabic-Bold";
+  src: url("../fonts/Loew-Next-Arabic-Bold.eot");
+  src: url("../fonts/Loew-Next-Arabic-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/Loew-Next-Arabic-Bold.woff2") format("woff2"),
+    url("../fonts/Loew-Next-Arabic-Bold.woff") format("woff"),
+    url("../fonts/Loew-Next-Arabic-Bold.ttf") format("truetype");
+}
+
+:root {
+  --purple-color: #1c1550;
+  --purple-color-2: #60498c;
+  --gray-color: #828282;
+  --gray-color-2: #dbdae3;
+  --gray-color-3: #d5d5d5;
+  --black-color: #111111;
+  --white-color: #ffffff;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Loew-Next-Arabic-ExtraBold";
+  font-weight: 800;
+  color: var(--purple-color);
+}
+h1 {
+  font-size: 50px;
+  line-height: 60px;
+}
+h2 {
+  font-size: 40px;
+  line-height: 50px;
+}
+h3 {
+  font-size: 20px;
+  line-height: 30px;
+}
+p {
+  font-family: "Loew-Next-Arabic-medium";
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--gray-color);
+  line-height: 20px;
+}
+a {
+  font-family: "Loew-Next-Arabic-medium";
+  font-weight: 700;
+  font-size: 16px;
+}
+.primary-button {
+  background-color: var(--purple-color);
+  color: var(--white-color);
+  font-size: 20px;
+  font-family: "Loew-Next-Arabic-Bold";
+  border-radius: 35px;
+  padding: 7px 20px;
+  border: none;
+}
+
+.secondary-button {
+  color: var(--orange-color);
+  text-decoration: none;
+  font-weight: 600;
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  -moz-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+  position: relative;
+  &:hover {
+    text-decoration: underline;
+    color: var(--purple-color);
+  }
+}
+
+.secondary-button::after {
+  content: "\f054";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 10px;
+  background-color: var(--white-color);
+  color: var(--black-color);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  right: -30px;
+  top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  -moz-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.container-fluid {
+  padding: 1px 70px;
+}
+ul {
+  padding-left: 0;
+}
+ul li {
+  list-style: none;
+}
