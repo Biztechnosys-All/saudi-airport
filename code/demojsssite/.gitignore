@@ -27,6 +27,7 @@
 
 # sitecore
 scjssconfig.json
+package-lock.json
 *.deploysecret.config
 
 # vercel
