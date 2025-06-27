@@ -84,8 +84,24 @@ const nextConfig = {
         source: '/sitecore/service/:path*',
         destination: `${jssConfig.sitecoreApiHost}/sitecore/service/:path*`,
       },
+      {
+        source: '/api/jss/:path*',
+        destination: `${jssConfig.sitecoreApiHost}/api/jss/:path*`
+    }
     ];
   },
+
+  async headers() {
+  return [
+    {
+      source: '/(.*)',
+      headers: [
+        { key: 'Access-Control-Allow-Credentials', value: 'true' },
+        { key: 'Access-Control-Allow-Origin', value: 'https://saudiairportdemosc.dev.local' },
+      ],
+    },
+  ];
+}
 };
 
 module.exports = () => {

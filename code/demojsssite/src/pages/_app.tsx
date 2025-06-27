@@ -10,8 +10,12 @@ import '../styles/theme/responsive.css'
 import '../styles/theme/animate.min.css'
 import '../styles/theme/owl.carousel.min.css'
 
-// import 'assets/main.scss';
+
 import LoadCustomScripts from 'components/LoadCustomScripts'
+
+import 'assets/main.scss';
+import 'assets/sass/components/Form.css'
+
 
 function App({ Component, pageProps }: AppProps<SitecorePageProps>): JSX.Element {
   const { dictionary, ...rest } = pageProps;
