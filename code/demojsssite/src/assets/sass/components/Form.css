@@ -41,7 +41,12 @@
           cursor: pointer;
           width: 100%;
         }
-
+        .invalid p {
+          color: red;
+        }
+        .form-errors{
+          display: none;
+        }
         @media (max-width: 768px) {
           .form-wrapper {
             width: 100%;
