@@ -1,0 +1,297 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sitecore.JavaScriptServices.Forms</name>
+    </assembly>
+    <members>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Controllers.JsonFieldTrackingController">
+            <summary>
+            Accepts FXB field tracking posts for JSS forms.
+            This is its own separate controller so that it can use JSS' CORS/API key support.
+            </summary>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Controllers.JsonFieldTrackingController.JssFieldEventDataModelBinder">
+            <summary>
+            This custom binder is needed because the default binder was returning null when binding IList of FieldEventData, even with valid incoming JSON array.
+            The binder essentially hard-codes the JSON deserialization to the expected model type from the request body, ignoring any form/query values that may be present.
+            </summary>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Controllers.JsonFormBuilderController">
+            <summary>
+            Root controller that accepts JSS FXB form posts. Unlike normal FXB, this controller speaks JSON data not HTML.
+            </summary>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Controllers.JsonFormBuilderController.Index(Sitecore.ExperienceForms.Models.FormDataModel)">
+            <summary>
+            Accepts data posts from FXB forms.
+            </summary>
+            <returns>JSON-serialized <see cref="T:Sitecore.JavaScriptServices.Forms.Models.FormResult"/></returns>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Controllers.JsonFormBuilderController.GetSubmitActionResult(Sitecore.ExperienceForms.Processing.FormSubmitContext,System.String)">
+            <summary>
+            Handles running submit actions when a form is submitted
+            </summary>
+            <param name="submitContext"></param>
+            <param name="contextItemId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Controllers.JsonFormBuilderController.GetNextForm(System.String,System.String,Sitecore.ExperienceForms.Models.NavigationType,System.String[])">
+            <summary>
+            Gets the next form step to render
+            </summary>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Controllers.JsonFormBuilderController.CollectModelStateErrors">
+            <summary>
+            Converts MVC model state errors into a dictionary appropriate for JSON serialization
+            </summary>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Controllers.JsonFormBuilderController.CreateResult(Sitecore.JavaScriptServices.Forms.Models.FormResult)">
+            <summary>
+            Creates the JSON serialization result for the post, using camel case serialization and setting appropriate status codes
+            </summary>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Factories.Interfaces.IPageContextProvider">
+            <summary>
+            Instantiates <see cref="T:Sitecore.Mvc.Presentation.PageContext"/> class
+            </summary>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Factories.Interfaces.IPageContextProvider.CreateContext">
+            <summary>
+            Creates <see cref="T:Sitecore.Mvc.Presentation.PageContext"/>
+            </summary>
+            <returns><see cref="T:Sitecore.Mvc.Presentation.PageContext"/></returns>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Factories.Interfaces.IPageContextProvider.ClearContext">
+            <summary>
+            Flushes <see cref="T:Sitecore.Mvc.Presentation.PageContext"/>
+            </summary>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Factories.Interfaces.IPageContextProvider.CheckContext">
+            <summary>
+            Check if <see cref="T:Sitecore.Mvc.Presentation.PageContext"/> exists safe result
+            </summary>
+            <returns><see cref="T:Sitecore.JavaScriptServices.Forms.Models.CheckContextResult"/></returns>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Factories.PageContextProvider">
+            <inheritdoc cref="T:Sitecore.JavaScriptServices.Forms.Factories.Interfaces.IPageContextProvider"/>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.IJsonFormService">
+            <summary>
+            Dependency that can take a Sitecore Form item ID and return a JSON-serializable form representation.
+            </summary>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.JsonFormService.GetForm(System.String)">
+            <summary>
+            Gets a JSON-serializable form representation for the current page of a given form
+            </summary>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.JsonFormService.ResolveFormFields(Sitecore.Data.Items.Item,System.Web.Mvc.TemplateInfo)">
+            <summary>
+            Extracts all root level form fields on the current page of the current form
+            </summary>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.JsonFormService.CreateField(Sitecore.ExperienceForms.Mvc.Services.WrapperViewModel,System.Web.Mvc.TemplateInfo)">
+            <summary>
+            Extracts the JSON-serializable form field model from the FXB view model data
+            </summary>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.LayoutService.FormsRenderingContentsResolver">
+            <summary>
+            Tells JSS how to serialize a Sitecore Form into Layout Service output, so that we can render the form.
+            </summary>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Models.ButtonFormField">
+            <summary>
+            A form field with button behaviour (able to submit or navigate steps)
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.ButtonFormField.NavigationButtonsField">
+            <summary>
+            Hidden form field required by FXB model binder
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.ButtonFormField.NavigationStepField">
+            <summary>
+            Hidden form field required by FXB model binder
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.ButtonFormField.ButtonField">
+            <summary>
+            The button's HTML attribute info
+            </summary>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Models.Form">
+            <summary>
+            Model for a JSON-serializable Sitecore Form
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.Form.HtmlPrefix">
+            <summary>
+            Randomly generated prefix used to disambiguate multiple forms on the same page
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.Form.FormSessionId">
+            <summary>
+            Hidden form field that maintains server-side state on the form (across steps)
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.Form.FormItemId">
+            <summary>
+            Hidden form field required by FXB model binder
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.Form.PageItemId">
+            <summary>
+            Hidden form field required by FXB model binder
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.Form.AntiForgeryToken">
+            <summary>
+            Hidden form field required for CSRF validation
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.Form.Metadata">
+            <summary>
+            The form's metadata/viewmodel. Top level data about the form and its settings.
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.Form.Fields">
+            <summary>
+            The fields that are on the current page of the form (note: sections contain sub-fields and can be nested)
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.Form.ContextItemId">
+            <summary>
+            Id of an context item
+            </summary>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Models.FormField">
+            <summary>
+            Represents a field on a Sitecore Form when serialized to JSON
+            </summary>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Models.FormFieldSection">
+            <summary>
+            Represents a section field on a serialized Sitecore Form. Sections contain a group of sub-fields.
+            </summary>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Models.FormResult">
+            <summary>
+            Object that is serialized to JSON as a result of posting a Sitecore Form to the JSON endpoint.
+            </summary>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Models.FormResult.#ctor">
+            <summary>
+            Successful form result
+            </summary>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Models.FormResult.#ctor(Sitecore.JavaScriptServices.Forms.Models.Form)">
+            <summary>
+            Successful form result with a next step form data to return
+            </summary>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Models.FormResult.#ctor(System.String)">
+            <summary>
+            Successful form result with a redirect URL on success
+            </summary>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Models.FormResult.#ctor(System.String[],System.Collections.Generic.Dictionary{System.String,System.String[]},Sitecore.JavaScriptServices.Forms.Models.Form)">
+            <summary>
+            Failed form result
+            </summary>
+            <param name="errors">Form-wide submit errors (i.e. processing errors)</param>
+            <param name="validationErrors">Field-level validation errors</param>
+            <param name="nextForm">The next form to display, if there is one</param>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.FormResult.Success">
+            <summary>
+            Whether the post was successful (success = true for both submits and step changes)
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.FormResult.RedirectUrl">
+            <summary>
+            On a form submit, if there is a redirect submit action attached this returns the URL to redirect to. Null otherwise.
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.FormResult.Errors">
+            <summary>
+            Any error messages encountered while posting the form. These messages are form-wide, and do not contain field-level errors. Never null.
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.FormResult.ValidationErrors">
+            <summary>
+            Maps field-level validation errors to form field names.
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.FormResult.NextForm">
+            <summary>
+            The serialized schema of the next form step to display. In the event of validation errors, this will be the schema of the same step.
+            </summary>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Models.HtmlFormField">
+            <summary>
+            Represents a form field on an HTML form (i.e. an input, select, etc).
+            Contains the expected name to successfully post the field back to FXB.
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.HtmlFormField.Name">
+            <summary>
+            Name of the form field (i.e. HTML name attribute)
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.HtmlFormField.Id">
+            <summary>
+            ID of the form field (i.e. HTML id attribute)
+            NOTE: This is informational and does not affect posting of the form if ignored.
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.HtmlFormField.Value">
+            <summary>
+            The value of the form field. Note that value only applies to _hidden_ form fields.
+            When used in the value of <see cref="T:Sitecore.JavaScriptServices.Forms.Models.ValueFormField"/>'s ValueField property, this is always null and the value comes from the field's view model.
+            </summary>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Models.ValueFormField">
+            <summary>
+            A field on a FXB form that contains a mutable value (i.e. a text box, number, select, etc)
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.ValueFormField.IndexField">
+            <summary>
+            Hidden form field required by FXB model binder
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.ValueFormField.FieldIdField">
+            <summary>
+            Hidden form field required by FXB model binder
+            </summary>
+        </member>
+        <member name="P:Sitecore.JavaScriptServices.Forms.Models.ValueFormField.ValueField">
+            <summary>
+            The mutable field value's name and ID. The <see cref="T:Sitecore.JavaScriptServices.Forms.Models.HtmlFormField"/>'s Value property is ignored in this case; get the field value from the ViewModel.
+            </summary>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Pipelines.Initialize.InitializeRoutes">
+            <summary>
+            Registers the routes for the JSS forms support
+            </summary>
+        </member>
+        <member name="T:Sitecore.JavaScriptServices.Forms.Services.PageContextManager">
+            <summary>
+            Creates current <see cref="T:Sitecore.Mvc.Presentation.PageContext"/>
+            </summary>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Services.PageContextManager.UseContext">
+            <summary>
+            Creates or gets current <see cref="T:Sitecore.Mvc.Presentation.PageContext"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sitecore.JavaScriptServices.Forms.Services.PageContextManager.CheckContext">
+            <summary>
+            Check if <see cref="T:Sitecore.Mvc.Presentation.PageContext"/> exists safe result
+            </summary>
+            <returns><see cref="T:Sitecore.JavaScriptServices.Forms.Models.CheckContextResult"/></returns>
+        </member>
+    </members>
+</doc>
